@@ -62,7 +62,7 @@ export const pricingTiers: PricingTier[] = [
     description: "For large salon chains and franchises",
     limits: "Unlimited locations & employees · 50K+ customers",
     popular: false,
-    cta: "Contact Sales",
+    cta: "Start Free Trial",
     features: [
       "Everything in Professional",
       "Unlimited Locations",

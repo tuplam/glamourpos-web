@@ -5,6 +5,7 @@ import { Check, Zap, TrendingUp, Crown } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { pricingTiers } from "@/lib/pricing-data"
+import { APP_URL } from "@/lib/config"
 
 const planIcons = { starter: Zap, professional: TrendingUp, enterprise: Crown }
 
@@ -106,17 +107,17 @@ export default function PricingSection() {
                   ))}
                 </ul>
 
-                <Button
-                  className={`w-full rounded-full font-semibold ${
-                    tier.popular
-                      ? "bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white border-0 shadow-lg shadow-pink-500/20"
-                      : tier.id === "enterprise"
-                      ? "bg-gray-900 hover:bg-gray-800 text-white border-0"
-                      : "bg-gray-900 hover:bg-gray-800 text-white border-0"
-                  }`}
-                >
-                  {tier.cta}
-                </Button>
+                <a href={APP_URL} className="w-full">
+                  <Button
+                    className={`w-full rounded-full font-semibold ${
+                      tier.popular
+                        ? "bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white border-0 shadow-lg shadow-pink-500/20"
+                        : "bg-gray-900 hover:bg-gray-800 text-white border-0"
+                    }`}
+                  >
+                    {tier.cta}
+                  </Button>
+                </a>
               </div>
             )
           })}
