@@ -29,14 +29,14 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Environments
 
-The app URL is resolved via `lib/config.ts` based on `NODE_ENV`:
+The app URL is driven by the `NEXT_PUBLIC_APP_URL` environment variable (see `lib/config.ts`). Set it per environment in your hosting platform:
 
-| Environment | URL |
-|-------------|-----|
-| Production | https://app.glamourpos.com/ |
-| Non-production | https://preview.app.glamourpos.com/ |
+| Environment | `NEXT_PUBLIC_APP_URL` |
+|-------------|----------------------|
+| Production | `https://app.glamourpos.com/` |
+| Preview / Non-production | `https://preview.app.glamourpos.com/` |
 
-The "Sign In" and "Start Free Trial" buttons across the site link to `APP_URL` from this config.
+The `.env` file provides the preview URL as the local default. The "Sign In" and "Start Free Trial" buttons across the site link to this value.
 
 ## Scripts
 
