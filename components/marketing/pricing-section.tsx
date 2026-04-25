@@ -107,7 +107,14 @@ export default function PricingSection() {
                   ))}
                 </ul>
 
-                <a href={APP_URL} className="w-full">
+                <a
+                  href={
+                    tier.id === "enterprise"
+                      ? "mailto:sales@glamourpos.com"
+                      : `/signup?plan=${tier.id}`
+                  }
+                  className="w-full"
+                >
                   <Button
                     className={`w-full rounded-full font-semibold ${
                       tier.popular

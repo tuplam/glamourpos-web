@@ -22,7 +22,7 @@ export default function CTABanner() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
-          <a href={APP_URL}>
+          <a href="/signup">
             <Button
               size="lg"
               className="bg-white text-purple-700 hover:bg-pink-50 font-semibold rounded-full px-8 shadow-xl"

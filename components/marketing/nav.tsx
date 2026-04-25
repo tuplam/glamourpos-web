@@ -59,7 +59,7 @@ export default function Nav() {
               Sign In
             </Button>
           </a>
-          <a href={APP_URL}>
+          <a href="/signup">
             <Button className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white border-0 rounded-full px-6 shadow-lg shadow-pink-500/25">
               Start Free Trial
             </Button>
@@ -98,7 +98,7 @@ export default function Nav() {
                   Sign In
                 </Button>
               </a>
-              <a href={APP_URL} onClick={() => setOpen(false)}>
+              <a href="/signup" onClick={() => setOpen(false)}>
                 <Button className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white border-0 rounded-full">
                   Start Free Trial
                 </Button>
