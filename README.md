@@ -27,6 +27,17 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
+## Environments
+
+The app URL is resolved via `lib/config.ts` based on `NODE_ENV`:
+
+| Environment | URL |
+|-------------|-----|
+| Production | https://app.glamourpos.com/ |
+| Non-production | https://preview.app.glamourpos.com/ |
+
+The "Sign In" and "Start Free Trial" buttons across the site link to `APP_URL` from this config.
+
 ## Scripts
 
 | Command | Description |
@@ -46,6 +57,7 @@ components/
   marketing/          # Landing page sections (Nav, Hero, Pricing, etc.)
   ui/                 # Shared UI primitives
 lib/
+  config.ts           # App URL config (production vs non-production)
   pricing-data.ts     # Pricing plans data
   utils.ts            # Utility helpers
 public/               # Static assets

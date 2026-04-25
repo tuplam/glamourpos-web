@@ -1,5 +1,6 @@
 import { ArrowRight, Play } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { APP_URL } from "@/lib/config"
 
 function DashboardPreview() {
   return (
@@ -108,7 +109,7 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
-              <a href="#pricing">
+              <a href={APP_URL}>
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white border-0 rounded-full px-8 py-6 text-base font-semibold shadow-xl shadow-pink-500/30 w-full sm:w-auto"

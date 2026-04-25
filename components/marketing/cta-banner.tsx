@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { APP_URL } from "@/lib/config"
 
 const reassurances = [
   "No credit card required",
@@ -21,7 +22,7 @@ export default function CTABanner() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
-          <a href="#pricing">
+          <a href={APP_URL}>
             <Button
               size="lg"
               className="bg-white text-purple-700 hover:bg-pink-50 font-semibold rounded-full px-8 shadow-xl"
@@ -30,7 +31,7 @@ export default function CTABanner() {
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </a>
-          <a href="https://app.glamourpos.com">
+          <a href={APP_URL}>
             <Button
               size="lg"
               variant="outline"

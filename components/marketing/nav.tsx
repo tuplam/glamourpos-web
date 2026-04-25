@@ -5,6 +5,7 @@ import { Sparkles, Menu } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { APP_URL } from "@/lib/config"
 
 const navLinks = [
   { label: "Features", href: "#features" },
@@ -53,12 +54,12 @@ export default function Nav() {
 
         {/* Desktop CTAs */}
         <div className="hidden md:flex items-center gap-3">
-          <a href="https://app.glamourpos.com">
+          <a href={APP_URL}>
             <Button variant="ghost" className="text-gray-300 hover:text-white hover:bg-white/10">
               Sign In
             </Button>
           </a>
-          <a href="#pricing">
+          <a href={APP_URL}>
             <Button className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white border-0 rounded-full px-6 shadow-lg shadow-pink-500/25">
               Start Free Trial
             </Button>
@@ -92,12 +93,12 @@ export default function Nav() {
               ))}
             </nav>
             <div className="flex flex-col gap-3">
-              <a href="https://app.glamourpos.com" onClick={() => setOpen(false)}>
+              <a href={APP_URL} onClick={() => setOpen(false)}>
                 <Button variant="outline" className="w-full border-white/20 text-gray-300 hover:text-white hover:bg-white/10 bg-transparent">
                   Sign In
                 </Button>
               </a>
-              <a href="#pricing" onClick={() => setOpen(false)}>
+              <a href={APP_URL} onClick={() => setOpen(false)}>
                 <Button className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white border-0 rounded-full">
                   Start Free Trial
                 </Button>
