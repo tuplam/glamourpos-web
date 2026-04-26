@@ -4,7 +4,7 @@ import Hero from "@/components/marketing/hero"
 import SocialProofBar from "@/components/marketing/social-proof-bar"
 import FeaturesGrid from "@/components/marketing/features-grid"
 import FeatureSpotlight from "@/components/marketing/feature-spotlight"
-import PricingSection from "@/components/marketing/pricing-section"
+import SignupSection from "@/components/signup/signup-section"
 import Testimonials from "@/components/marketing/testimonials"
 import FAQ from "@/components/marketing/faq"
 import CTABanner from "@/components/marketing/cta-banner"
@@ -32,7 +32,7 @@ export default function HomePage() {
       <SocialProofBar />
       <FeaturesGrid />
       <FeatureSpotlight />
-      <PricingSection />
+      <SignupSection />
       <Testimonials />
       <FAQ />
       <CTABanner />

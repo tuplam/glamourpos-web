@@ -1,14 +1,10 @@
 "use client"
 
-import { Suspense } from "react"
-import { useSearchParams, useRouter } from "next/navigation"
+import { useRouter } from "next/navigation"
 import PricingPage from "@/components/signup/pricing-page"
 
-function SignupContent() {
-  const params = useSearchParams()
+export default function SignupSection() {
   const router = useRouter()
-  const initialPlan = params.get("plan") ?? ""
-  const initialBilling = (params.get("billing") ?? "monthly") as "monthly" | "yearly"
 
   async function handleSignup(data: Parameters<React.ComponentProps<typeof PricingPage>["onSignup"]>[0]) {
     const res = await fetch("/api/signup", {
@@ -26,19 +22,14 @@ function SignupContent() {
   }
 
   return (
-    <PricingPage
-      initialPlan={initialPlan}
-      initialBilling={initialBilling}
-      onSignup={handleSignup}
-      onBack={() => router.push("/")}
-    />
-  )
-}
-
-export default function SignupPage() {
-  return (
-    <Suspense>
-      <SignupContent />
-    </Suspense>
+    <div id="pricing">
+      <PricingPage
+        embedded
+        initialPlan=""
+        onSignup={handleSignup}
+        onBack={() => {}}
+        onPlanSelected={(tier, cycle) => router.push(`/signup?plan=${tier}&billing=${cycle}`)}
+      />
+    </div>
   )
 }

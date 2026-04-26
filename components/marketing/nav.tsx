@@ -3,23 +3,26 @@
 import { useState, useEffect } from "react"
 import { Sparkles, Menu } from "lucide-react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { APP_URL } from "@/lib/config"
+import { getAppUrl } from "@/lib/config"
 
 const navLinks = [
-  { label: "Features", href: "#features" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Features", href: "/#features" },
+  { label: "Pricing", href: "/#pricing" },
+  { label: "Testimonials", href: "/#testimonials" },
+  { label: "FAQ", href: "/#faq" },
 ]
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20)
+    handler() // check immediately in case page is already scrolled (e.g. anchor navigation)
     window.addEventListener("scroll", handler, { passive: true })
     return () => window.removeEventListener("scroll", handler)
   }, [])
@@ -27,7 +30,7 @@ export default function Nav() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-black/80 backdrop-blur-md border-b border-white/10" : "bg-transparent"
+        scrolled || pathname !== "/" ? "bg-black/80 backdrop-blur-md border-b border-white/10" : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -54,12 +57,12 @@ export default function Nav() {
 
         {/* Desktop CTAs */}
         <div className="hidden md:flex items-center gap-3">
-          <a href={APP_URL}>
+          <a href={getAppUrl()}>
             <Button variant="ghost" className="text-gray-300 hover:text-white hover:bg-white/10">
               Sign In
             </Button>
           </a>
-          <a href="/signup">
+          <a href={pathname === "/" ? "/#pricing" : "/signup"}>
             <Button className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white border-0 rounded-full px-6 shadow-lg shadow-pink-500/25">
               Start Free Trial
             </Button>
@@ -93,12 +96,12 @@ export default function Nav() {
               ))}
             </nav>
             <div className="flex flex-col gap-3">
-              <a href={APP_URL} onClick={() => setOpen(false)}>
+              <a href={getAppUrl()} onClick={() => setOpen(false)}>
                 <Button variant="outline" className="w-full border-white/20 text-gray-300 hover:text-white hover:bg-white/10 bg-transparent">
                   Sign In
                 </Button>
               </a>
-              <a href="/signup" onClick={() => setOpen(false)}>
+              <a href={pathname === "/" ? "/#pricing" : "/signup"} onClick={() => setOpen(false)}>
                 <Button className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white border-0 rounded-full">
                   Start Free Trial
                 </Button>

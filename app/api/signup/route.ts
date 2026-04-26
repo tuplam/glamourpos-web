@@ -6,17 +6,12 @@ export const dynamic = "force-dynamic"
 function getSupabase() {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
   const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY
-
-  if (!supabaseUrl || !serviceRoleKey) {
-    throw new Error("Missing Supabase environment variables")
-  }
-
+  if (!supabaseUrl || !serviceRoleKey) return null
   return createClient(supabaseUrl, serviceRoleKey)
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const supabase = getSupabase()
     const signupData = await request.json()
 
     // Validate required fields
@@ -37,6 +32,26 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    const supabase = getSupabase()
+
+    // ── Demo / staging mode — no Supabase configured ──────────────────────────
+    if (!supabase) {
+      console.warn("Supabase not configured — returning demo signup response")
+      return NextResponse.json({
+        success: true,
+        demo: true,
+        business: { id: "demo", name: signupData.businessName, email: signupData.email },
+        subscription: {
+          id: "demo",
+          plan: signupData.selectedTier,
+          status: "trialing",
+          trialEnd: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString(),
+        },
+      })
+    }
+
+    // ── Live mode — persist to Supabase ───────────────────────────────────────
+
     // Check if email already exists
     const { data: existingBusiness } = await supabase
       .from("businesses")
@@ -49,10 +64,11 @@ export async function POST(request: NextRequest) {
     }
 
     // Get the selected plan
+    const planName = signupData.selectedTier.charAt(0).toUpperCase() + signupData.selectedTier.slice(1)
     const { data: plan, error: planError } = await supabase
       .from("subscription_plans")
       .select("*")
-      .eq("name", signupData.selectedTier)
+      .ilike("name", planName)
       .single()
 
     if (planError || !plan) {
@@ -185,6 +201,7 @@ export async function POST(request: NextRequest) {
     })
   } catch (error) {
     console.error("Signup error:", error)
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+    const message = error instanceof Error ? error.message : "Internal server error"
+    return NextResponse.json({ error: message }, { status: 500 })
   }
 }

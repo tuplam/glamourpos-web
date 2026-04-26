@@ -1,6 +1,7 @@
+"use client"
 import { ArrowRight, Play } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { APP_URL } from "@/lib/config"
+import { getAppUrl } from "@/lib/config"
 
 function DashboardPreview() {
   return (
@@ -109,7 +110,7 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
-              <a href="/signup">
+              <a href="/#pricing">
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white border-0 rounded-full px-8 py-6 text-base font-semibold shadow-xl shadow-pink-500/30 w-full sm:w-auto"
@@ -118,16 +119,7 @@ export default function Hero() {
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </a>
-              <a href="https://app.glamourpos.com">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white/30 text-white hover:bg-white/10 bg-transparent rounded-full px-8 py-6 text-base font-semibold w-full sm:w-auto"
-                >
-                  <Play className="w-4 h-4 mr-2 fill-white" />
-                  See the Dashboard
-                </Button>
-              </a>
+
             </div>
 
             <div className="flex flex-wrap items-center gap-x-6 gap-y-2 justify-center lg:justify-start text-gray-400 text-sm">

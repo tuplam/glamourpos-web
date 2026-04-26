@@ -8,6 +8,9 @@ export interface PricingTier {
   features: string[]
   popular?: boolean
   cta: string
+  maxLocations: number
+  maxEmployees: number
+  maxCustomers: number
 }
 
 export const pricingTiers: PricingTier[] = [
@@ -20,6 +23,9 @@ export const pricingTiers: PricingTier[] = [
     limits: "1 location · 5 employees · 500 customers",
     popular: false,
     cta: "Start Free Trial",
+    maxLocations: 1,
+    maxEmployees: 5,
+    maxCustomers: 500,
     features: [
       "Point of Sale System",
       "Basic Appointment Scheduling",
@@ -40,6 +46,9 @@ export const pricingTiers: PricingTier[] = [
     limits: "2 locations · 15 employees · 2,000 customers",
     popular: true,
     cta: "Start Free Trial",
+    maxLocations: 2,
+    maxEmployees: 15,
+    maxCustomers: 2000,
     features: [
       "Everything in Starter",
       "Turn Management System",
@@ -63,6 +72,9 @@ export const pricingTiers: PricingTier[] = [
     limits: "Unlimited locations & employees · 50K+ customers",
     popular: false,
     cta: "Start Free Trial",
+    maxLocations: 999,
+    maxEmployees: 999,
+    maxCustomers: 50000,
     features: [
       "Everything in Professional",
       "Unlimited Locations",
